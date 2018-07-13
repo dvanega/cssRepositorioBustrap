@@ -39,3 +39,49 @@ console.log(pedro.edad);
 let mayor =  function(a){
     return 5 > a;
 }
+
+let Persona = function(nombre){
+    this.name = nombre;
+    this.pv =100;
+    this.sp=100;
+    this.cura=function(targetPerson){
+        console.log(this);
+        if(this.sp > 40){
+            targetPerson.pv += 40;
+            this.pv -= 40;
+        }else {
+            console.warn("no tienes puntos de magia");
+        } 
+    }
+    this.status = function(targetPerson) {
+        console.log(this);
+        console.log(targetPerson);
+    } 
+    this.atacar = function(targetPerson){
+        if(targetPerson.pv > 0)
+        {
+            if(this.sp > 0){
+                targetPerson.pv -= 30;
+                this.sp -= 20;
+            }else{
+                if(this.pv > 0){
+                    targetPerson.pv -= 30;
+                    this.pv -= 30;
+                }else{
+                    console.log("lo intente");
+                }
+            }
+        }else
+        {
+            console.log("esta muerto")
+        }
+    }  
+}   
+
+let gandal = new Persona("gandalf");
+let javier = new Persona("pedro");
+
+gandal.cura(javier);
+
+console.log("-----------");
+gandal.status(javier);
